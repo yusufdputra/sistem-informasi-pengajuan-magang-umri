@@ -57,12 +57,16 @@
             <td>{{$key+1}}</td>
             <td>{{$value->user['nomor_induk']}}</td>
             <td>{{$value->nama}}</td>
+
             @if($jenis == "mahasiswa")
             <td>{{$value->alamat}}</td>
             <td>Reguler {{strtoupper($value->kelas)}}</td>
             @endif
+
+            @if($jenis == "mahasiswa" || $jenis == "dosen")
             <td>{{strtoupper($value->prodi->nama)}}</td>
             <td>{{$value->nomor_hp}}</td>
+            @endif
 
             @if($jenis == "dosen")
             <td>{{$value->keterangan}}</td>
@@ -76,14 +80,18 @@
             @endif
             @role('admin|mahasiswa')
             <td>
+              <div class="input-group">
 
-              <a href="#edit-password" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id_user}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-warning btn-sm modal_pw"><i class="fa fa-lock"></i></a>
-
-              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-jenis="{{$jenis}}" data-id='{{$value->id}}' data-iduser='{{$value->id_user}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
-
-              @if($jenis == "dosen")
-              <a href="#edit-status" data-animation="sign" data-plugin="custommodal" data-status="{{$value->status}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary btn-sm modal_status"><i class="fa fa-toggle-on"></i></a>
-              @endif
+                <a href="#edit-password" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id_user}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-warning btn-sm modal_pw"><i class="fa fa-lock"></i></a>
+                
+                @if($jenis != "dekan")
+                <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-jenis="{{$jenis}}" data-id='{{$value->id}}' data-iduser='{{$value->id_user}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
+                @endif
+                
+                @if($jenis == "dosen")
+                <a href="#edit-status" data-animation="sign" data-plugin="custommodal" data-status="{{$value->status}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary btn-sm modal_status"><i class="fa fa-toggle-on"></i></a>
+                @endif
+              </div>
             </td>
             @endrole
           </tr>
@@ -221,8 +229,8 @@
     var id = $(this).data('id');
     $('#pw_id').val(id);
   });
-  
-  
+
+
   $('.modal_status').click(function() {
     var id = $(this).data('id');
     var status = $(this).data('status');
@@ -230,10 +238,10 @@
     $('#status').val(status);
 
     if (status == "ON") {
-      $('#span_status').attr('class','badge badge-success').text("Aktif")
+      $('#span_status').attr('class', 'badge badge-success').text("Aktif")
     } else {
-      $('#span_status').attr('class','badge badge-danger').text("Non-Aktif")
-      
+      $('#span_status').attr('class', 'badge badge-danger').text("Non-Aktif")
+
     }
 
   });

@@ -4,7 +4,7 @@
     <!-- User -->
     <div class="user-box">
       <div class="user-img">
-        <img src="<?php echo e(asset('adminto/images/users/avatar-1.jpg')); ?>" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+        <img src="<?php echo e(asset('adminto/images/users/avatar-1.jpg')); ?>" alt="user-img" title="" class="rounded-circle img-thumbnail img-responsive">
         <div class="user-status online"><i class="mdi mdi-adjust"></i></div>
       </div>
       <ul class="list-inline">

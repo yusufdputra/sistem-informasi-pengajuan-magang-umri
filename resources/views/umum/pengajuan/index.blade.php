@@ -57,6 +57,7 @@
             <th>Nama Sekolah</th>
             <th>Tanggal Pelaksanaan</th>
             <th>Dosen Pembimbing</th>
+            <th>NIDN Pembimbing</th>
             <th>Nilai PLP</th>
             @role('mahasiswa')
             <th>Lookbook</th>
@@ -91,6 +92,13 @@
               @endif
             </td>
             <td>
+              @if($value->id_dosen == null)
+              Belum Ditentukan
+              @else
+              {{$value->dsn->user->nomor_induk}}
+              @endif
+            </td>
+            <td>
               @if($value->nilai_pembimbing == null)
               Tidak Ada Nilai
               @else
@@ -102,7 +110,11 @@
             <!-- LOOKBOOK -->
             @role('mahasiswa')
             <td>
+              @if($value->url_laporan == NULL)
               <a href="{{route('lookbook', $value->id)}}" class="btn btn-sm btn-info waves-effect waves-light">Lihat</a>
+              @else
+              Tidak Tersedia
+              @endif
             </td>
             @endrole
 

@@ -57,9 +57,10 @@
             <th>Nama Sekolah</th>
             <th>Tanggal Pelaksanaan</th>
             <th>Dosen Pembimbing</th>
-            <th>Nilai Magang</th>
+            <th>NIDN Pembimbing</th>
+            <th>Nilai PLP</th>
             <?php if(auth()->check() && auth()->user()->hasRole('mahasiswa')): ?>
-            <th>Progres</th>
+            <th>Lookbook</th>
             <?php endif; ?>
             <th>Status Pengajuan</th>
             <th>Aksi</th>
@@ -94,6 +95,14 @@
               <?php endif; ?>
             </td>
             <td>
+              <?php if($value->id_dosen == null): ?>
+              Belum Ditentukan
+              <?php else: ?>
+              <?php echo e($value->dsn->user->nomor_induk); ?>
+
+              <?php endif; ?>
+            </td>
+            <td>
               <?php if($value->nilai_pembimbing == null): ?>
               Tidak Ada Nilai
               <?php else: ?>
@@ -106,7 +115,11 @@
             <!-- LOOKBOOK -->
             <?php if(auth()->check() && auth()->user()->hasRole('mahasiswa')): ?>
             <td>
+              <?php if($value->url_laporan == NULL): ?>
               <a href="<?php echo e(route('lookbook', $value->id)); ?>" class="btn btn-sm btn-info waves-effect waves-light">Lihat</a>
+              <?php else: ?>
+              Tidak Tersedia
+              <?php endif; ?>
             </td>
             <?php endif; ?>
 
@@ -184,7 +197,7 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Keterangan Pengajuan Magang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Keterangan Pengajuan PLP</h4>
     </div>
     <div class="text-left">
       <form class="form-horizontal m-t-20">
@@ -219,7 +232,7 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Upload Laporan Magang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Upload Laporan PLP</h4>
     </div>
     <div class="text-left">
       <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('pengajuanMagang.upload')); ?>" method="POST">

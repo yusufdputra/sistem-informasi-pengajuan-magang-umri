@@ -39,10 +39,21 @@ class PengajuanMagangController extends Controller
                 ->where('id_mahasiswa', $id_mhs->id)
                 ->orderBy('updated_at', 'DESC')
                 ->get();
+            
+            
+            // cek apakah ada pengajuan yang telah selesai pada semua periode
+            $jml_mg = Magang::where('id_mahasiswa', $id_mhs->id)
+            ->where('status_pengajuan', 'selesai')
+            ->count();
 
+            if ($jml_mg > 0) {
+                $status = $jml_mg;
+            }else{
+                $status = null;
+            }
+            
             // cek apakah sudah ada pengajuan di periode ini
-            $status = null;
-            if (($status_daftar) != null) {
+            if ($status == null && ($status_daftar) != null) {
                 $status = Magang::where('id_mahasiswa', $id_mhs->id)
                     ->where('id_periode', $status_daftar['id'])
                     ->first();
@@ -50,6 +61,8 @@ class PengajuanMagangController extends Controller
                 // ->whereBetween('created_at', [$status_daftar['mulai_daftar'], $status_daftar['akhir_daftar']])->first();
             }
 
+           
+            // dd($status);
             return view('umum.pengajuan.index', compact('title', 'pengajuan', 'status_daftar', 'status_magang', 'status'));
         }
         if (Auth::user()->roles[0]['name'] == 'admin') {

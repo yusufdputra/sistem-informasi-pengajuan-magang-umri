@@ -57,12 +57,16 @@
             <td><?php echo e($key+1); ?></td>
             <td><?php echo e($value->user['nomor_induk']); ?></td>
             <td><?php echo e($value->nama); ?></td>
+
             <?php if($jenis == "mahasiswa"): ?>
             <td><?php echo e($value->alamat); ?></td>
             <td>Reguler <?php echo e(strtoupper($value->kelas)); ?></td>
             <?php endif; ?>
+
+            <?php if($jenis == "mahasiswa" || $jenis == "dosen"): ?>
             <td><?php echo e(strtoupper($value->prodi->nama)); ?></td>
             <td><?php echo e($value->nomor_hp); ?></td>
+            <?php endif; ?>
 
             <?php if($jenis == "dosen"): ?>
             <td><?php echo e($value->keterangan); ?></td>
@@ -76,14 +80,18 @@
             <?php endif; ?>
             <?php if(auth()->check() && auth()->user()->hasRole('admin|mahasiswa')): ?>
             <td>
+              <div class="input-group">
 
-              <a href="#edit-password" data-animation="sign" data-plugin="custommodal" data-id='<?php echo e($value->id_user); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-warning btn-sm modal_pw"><i class="fa fa-lock"></i></a>
-
-              <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-jenis="<?php echo e($jenis); ?>" data-id='<?php echo e($value->id); ?>' data-iduser='<?php echo e($value->id_user); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
-
-              <?php if($jenis == "dosen"): ?>
-              <a href="#edit-status" data-animation="sign" data-plugin="custommodal" data-status="<?php echo e($value->status); ?>" data-id='<?php echo e($value->id); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary btn-sm modal_status"><i class="fa fa-toggle-on"></i></a>
-              <?php endif; ?>
+                <a href="#edit-password" data-animation="sign" data-plugin="custommodal" data-id='<?php echo e($value->id_user); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-warning btn-sm modal_pw"><i class="fa fa-lock"></i></a>
+                
+                <?php if($jenis != "dekan"): ?>
+                <a href="#hapus-modal" data-animation="sign" data-plugin="custommodal" data-jenis="<?php echo e($jenis); ?>" data-id='<?php echo e($value->id); ?>' data-iduser='<?php echo e($value->id_user); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-danger btn-sm hapus"><i class="fa fa-trash"></i></a>
+                <?php endif; ?>
+                
+                <?php if($jenis == "dosen"): ?>
+                <a href="#edit-status" data-animation="sign" data-plugin="custommodal" data-status="<?php echo e($value->status); ?>" data-id='<?php echo e($value->id); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary btn-sm modal_status"><i class="fa fa-toggle-on"></i></a>
+                <?php endif; ?>
+              </div>
             </td>
             <?php endif; ?>
           </tr>
@@ -221,8 +229,8 @@
     var id = $(this).data('id');
     $('#pw_id').val(id);
   });
-  
-  
+
+
   $('.modal_status').click(function() {
     var id = $(this).data('id');
     var status = $(this).data('status');
@@ -230,10 +238,10 @@
     $('#status').val(status);
 
     if (status == "ON") {
-      $('#span_status').attr('class','badge badge-success').text("Aktif")
+      $('#span_status').attr('class', 'badge badge-success').text("Aktif")
     } else {
-      $('#span_status').attr('class','badge badge-danger').text("Non-Aktif")
-      
+      $('#span_status').attr('class', 'badge badge-danger').text("Non-Aktif")
+
     }
 
   });

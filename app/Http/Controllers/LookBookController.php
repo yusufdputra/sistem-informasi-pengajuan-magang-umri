@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lookbook;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LookBookController extends Controller
 {
@@ -24,6 +25,17 @@ class LookBookController extends Controller
     public function store(Request $request)
     {
         // upload file pdf
+        // validasi
+        $rules = [
+            'file_laporan' => 'required|file|max:5120',
+        ];
+        $pesan = [
+            'file_laporan.max' => "File terlalu besar. Maksimal 5 MB",
+        ];
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
         try {
             // upload file baru
             $file = $request->file('file_laporan');
@@ -56,9 +68,9 @@ class LookBookController extends Controller
             return redirect()->back()->with('alert', 'Gagal menghapus Lookbook');
         }
         $query = Lookbook::where('id', $request->id)->delete();
-        if($query){
+        if ($query) {
             return redirect()->back()->with('success', 'Berhasil menghapus Lookbook');
-        }else{
+        } else {
             return redirect()->back()->with('alert', 'Gagal menghapus Lookbook');
         }
     }

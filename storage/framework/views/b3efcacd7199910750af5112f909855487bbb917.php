@@ -98,8 +98,8 @@
                     <select required class="form-control" name="nilai_matkul_1">
                       <option value="" selected disabled hidden>Silahkan Pilih</option>
                       <option value="A" <?php if($pengajuan !=null): ?> <?= $nilai_matkul[0] == '' ? 'selected' : ''; ?> <?php endif; ?>>A</option>
-                      <option value="B+" <?php if($pengajuan !=null): ?> <?= $nilai_matkul[0] == 'B+' ? 'selected' : ''; ?> <?php endif; ?>>B+</option>
                       <option value="A-" <?php if($pengajuan !=null): ?> <?= $nilai_matkul[0] == 'A-' ? 'selected' : ''; ?> <?php endif; ?>>A-</option>
+                      <option value="B+" <?php if($pengajuan !=null): ?> <?= $nilai_matkul[0] == 'B+' ? 'selected' : ''; ?> <?php endif; ?>>B+</option>
                       <option value="B" <?php if($pengajuan !=null): ?> <?= $nilai_matkul[0] == 'B' ? 'selected' : ''; ?> <?php endif; ?>>B</option>
                       <option value="B-" <?php if($pengajuan !=null): ?> <?= $nilai_matkul[0] == 'B-' ? 'selected' : ''; ?> <?php endif; ?>>B-</option>
                       <option value="C+" <?php if($pengajuan !=null): ?> <?= $nilai_matkul[0] == 'C+' ? 'selected' : ''; ?> <?php endif; ?>>C+</option>

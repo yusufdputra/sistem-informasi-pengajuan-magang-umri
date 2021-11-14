@@ -141,7 +141,7 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Terima Pengajuan Magang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Terima Pengajuan PLP</h4>
     </div>
     <div class="text-left">
       <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('pengajuanMagang.proses')); ?>" method="POST">
@@ -173,7 +173,7 @@
               <option value="<?php echo e($value->id); ?>"><?php echo e(Str::upper($value->nama)); ?></option>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
-            <span class="help-block text-danger"><small>Jumlah yang sudah magang : <span id="jml_magang"></span> Orang</small></span>
+            <span class="help-block text-danger"><small>Jumlah yang sudah PLP : <span id="jml_magang"></span> Orang</small></span>
           </div>
         </div>
 
@@ -213,7 +213,7 @@
   <div class="custom-modal-text">
 
     <div class="text-center">
-      <h4 class="text-uppercase font-bold mb-0">Tolak Pengajuan Magang</h4>
+      <h4 class="text-uppercase font-bold mb-0">Tolak Pengajuan PLP</h4>
     </div>
     <div class="text-left">
       <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="<?php echo e(route('pengajuanMagang.proses')); ?>" method="POST">
@@ -285,7 +285,6 @@
       dataType: 'json',
       success: 'success',
       success: function(data) {
-        console.log(data);
         $('#jml_magang').html(data['jml_magang'])
         if (data['dosen'] != null) {
           $('#dosen_rekomendasi').show()

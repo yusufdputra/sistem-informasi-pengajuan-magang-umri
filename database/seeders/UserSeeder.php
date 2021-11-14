@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
 
         
         $user = new User();
-        $user->nomor_induk = 'dekan';
+        $user->nomor_induk = '11651121';
         $user->email = 'dekan';
         $user->password = bcrypt('dekan1234');
         $user->save();

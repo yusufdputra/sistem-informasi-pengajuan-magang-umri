@@ -27,6 +27,15 @@
         <div><?php echo e(Session::get('success')); ?></div>
       </div>
       <?php endif; ?>
+      <?php if($errors->any()): ?>
+      <div class="alert alert-danger">
+        <ul>
+          <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <li><?php echo e($error); ?></li>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+      </div>
+      <?php endif; ?>
 
       <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
@@ -93,7 +102,7 @@
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Upload File</label>
           <div class="col-sm-9">
-            <input type="file" accept=".pdf" required data-max-file-size="2M" name="file_laporan" />
+            <input type="file" accept=".pdf" required data-max-file-size="5M" name="file_laporan" />
           </div>
         </div>
 

@@ -27,6 +27,15 @@
         <div>{{Session::get('success')}}</div>
       </div>
       @endif
+      @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+      @endif
 
       <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
@@ -93,7 +102,7 @@
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Upload File</label>
           <div class="col-sm-9">
-            <input type="file" accept=".pdf" required data-max-file-size="2M" name="file_laporan" />
+            <input type="file" accept=".pdf" required data-max-file-size="5M" name="file_laporan" />
           </div>
         </div>
 
