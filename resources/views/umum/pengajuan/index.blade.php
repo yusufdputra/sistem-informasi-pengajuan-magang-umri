@@ -60,7 +60,7 @@
             <th>NIDN Pembimbing</th>
             <th>Nilai PLP</th>
             @role('mahasiswa')
-            <th>Lookbook</th>
+            <th>Logbook</th>
             @endrole
             <th>Status Pengajuan</th>
             <th>Aksi</th>
@@ -107,7 +107,7 @@
             </td>
 
 
-            <!-- LOOKBOOK -->
+            <!-- Logbook -->
             @role('mahasiswa')
             <td>
               @if($value->url_laporan == NULL)

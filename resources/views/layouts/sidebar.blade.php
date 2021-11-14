@@ -4,10 +4,26 @@
     <!-- User -->
     <div class="user-box">
       <div class="user-img">
-        <img src="{{asset('adminto/images/users/avatar-1.jpg')}}" alt="user-img" title="" class="rounded-circle img-thumbnail img-responsive">
-        <div class="user-status online"><i class="mdi mdi-adjust"></i></div>
+        @if(Auth::user()->foto_path == null)
+        <a href="#foto-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"><img src="{{asset('adminto/images/users/avatar-1.jpg')}}" alt="user-img" title="" class="rounded-circle img-thumbnail img-responsive"></a>
+        @else
+        <a href="#foto-modal" data-animation="sign" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"><img src="storage/{{(Auth::user()->foto_path)}}" alt="user-img" title="" class="rounded-circle img-thumbnail img-responsive"></a>
+        @endif
       </div>
       <ul class="list-inline">
+        @if ($errors->any())
+        <div class="p-2">
+
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+        @endif
+
         <!-- get nama user login -->
         @role('mahasiswa')
         @php
@@ -45,6 +61,7 @@
         </li>
       </ul>
     </div>
+
     <!-- End User -->
 
     <!--- Sidemenu -->
@@ -121,7 +138,43 @@
 
 </div>
 <!-- Left Sidebar End -->
+<div id="foto-modal" class="modal-demo">
+  <button type="button" class="close" onclick="Custombox.close();">
+    <span>&times;</span><span class="sr-only">Close</span>
+  </button>
 
+  <div class="custom-modal-text">
+
+    <div class="text-center">
+      <h4 class="text-uppercase font-bold mb-0">Ubah Foto Profil</h4>
+    </div>
+    <div class="text-left">
+      <form class="form-horizontal m-t-20" enctype="multipart/form-data" action="{{route('foto_profil.store')}}" method="POST">
+        @csrf
+
+        <input type="hidden" name="file_lama" value="{{Auth::user()->foto_path}}" id="">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Foto</label>
+          <div class="col-sm-9">
+            <input type="file" accept="image/*" required data-plugins="dropify" name="file_foto" data-max-file-size="2M" />
+          </div>
+        </div>
+
+
+
+
+        <div class="modal-footer">
+          <button type="button" onclick="Custombox.close();" class="btn btn-default waves-effect" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary waves-effect waves-light">Ubah</button>
+        </div>
+
+
+      </form>
+
+    </div>
+  </div>
+
+</div>
 
 
 <!-- ============================================================== -->

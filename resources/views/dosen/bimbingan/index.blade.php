@@ -27,7 +27,7 @@
             <th>Nama Sekolah</th>
             <th>Tanggal Pelaksanaan</th>
             <th>Nilai PLP</th>
-            <th>Lookbook</th>
+            <th>Logbook</th>
             <th>Status PLP</th>
             <th>Aksi</th>
           </tr>

@@ -16,7 +16,7 @@ class LookBookController extends Controller
 
     public function index($id_pengajuan)
     {
-        $title = "Lookbook";
+        $title = "Logbook";
         $lookbooks = Lookbook::where('id_magang', $id_pengajuan)->get();
 
         return view('mahasiswa.lookbook.index', compact('title', 'lookbooks', 'id_pengajuan'));
@@ -65,13 +65,13 @@ class LookBookController extends Controller
         try {
             unlink(storage_path('app/public/' . $request->url_laporan));
         } catch (\Throwable $th) {
-            return redirect()->back()->with('alert', 'Gagal menghapus Lookbook');
+            return redirect()->back()->with('alert', 'Gagal menghapus Logbook');
         }
         $query = Lookbook::where('id', $request->id)->delete();
         if ($query) {
-            return redirect()->back()->with('success', 'Berhasil menghapus Lookbook');
+            return redirect()->back()->with('success', 'Berhasil menghapus Logbook');
         } else {
-            return redirect()->back()->with('alert', 'Gagal menghapus Lookbook');
+            return redirect()->back()->with('alert', 'Gagal menghapus Logbook');
         }
     }
 }

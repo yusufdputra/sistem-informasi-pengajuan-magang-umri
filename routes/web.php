@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FotoProfilController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuisionerController;
 use App\Http\Controllers\LookBookController;
@@ -114,5 +115,11 @@ Route::group(['middleware' => ['role:dosen']], function () {
 
     //kelola lookbook
     Route::get('/lookbookMhs/{id}', [LookBookController::class, 'index'])->name('lookbookMhs');
+});
+Route::group(['middleware' => ['role:dosen|admin|dekan|mahasiswa']], function () {
+
+    // kelola update foto profil
+    Route::post('foto_profil', [FotoProfilController::class, 'store'])->name('foto_profil.store');
+
 });
 

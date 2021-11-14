@@ -4,7 +4,8 @@
     <!-- LOGO -->
     <!-- LOGO -->
     <div class="topbar-left">
-        <a href="index.html" class="logo"><span>SI<span>PLP</span></span><i class="mdi mdi-layers"></i></a>
+        <!-- <a href="{{route('/')}}" class="logo"><span>SI<span>PLP</span></span><i class="mdi mdi-layers"></i></a> -->
+        <a href="{{route('/')}}" class="logo"><span><img src="{{asset('adminto/images/brand/brand.png')}}" alt="logo" title="" class="logo " width="150px" ></span><i class="mdi mdi-layers"></i></a>
     </div>
 
     <!-- Button mobile view to collapse sidebar menu -->

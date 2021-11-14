@@ -10,7 +10,11 @@
 <div class="content-page">
     <!-- Start content -->
     <div class="container-fluid">
+
+        
         @yield('content')
+
+
     </div>
 </div>
 @include('layouts.footer')

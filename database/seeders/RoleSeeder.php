@@ -28,9 +28,9 @@ class RoleSeeder extends Seeder
         //     'name' => 'dosen',
         //     'guard_name' => 'web'
         // ]);
-        // Role::create([
-        //     'name' => 'dekan',
-        //     'guard_name' => 'web'
-        // ]);
+        Role::create([
+            'name' => 'dekan',
+            'guard_name' => 'web'
+        ]);
     }
 }
