@@ -35,13 +35,17 @@
             <th>Alamat</th>
             <th>Kelas</th>
             <?php endif; ?>
+            <?php if($jenis == "mahasiswa" || $jenis == "dosen"): ?>
             <th>Prodi</th>
             <th>Nomor HP</th>
+            <?php endif; ?>
             <?php if($jenis == "dosen"): ?>
             <th>Alasan</th>
             <th>Status</th>
             <?php endif; ?>
+            <?php if(auth()->check() && auth()->user()->hasRole('admin|mahasiswa')): ?>
             <th>Action</th>
+            <?php endif; ?>
           </tr>
         </thead>
 
@@ -70,6 +74,7 @@
               <?php endif; ?>
             </td>
             <?php endif; ?>
+            <?php if(auth()->check() && auth()->user()->hasRole('admin|mahasiswa')): ?>
             <td>
 
               <a href="#edit-password" data-animation="sign" data-plugin="custommodal" data-id='<?php echo e($value->id_user); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-warning btn-sm modal_pw"><i class="fa fa-lock"></i></a>
@@ -79,9 +84,8 @@
               <?php if($jenis == "dosen"): ?>
               <a href="#edit-status" data-animation="sign" data-plugin="custommodal" data-status="<?php echo e($value->status); ?>" data-id='<?php echo e($value->id); ?>' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary btn-sm modal_status"><i class="fa fa-toggle-on"></i></a>
               <?php endif; ?>
-
-
             </td>
+            <?php endif; ?>
           </tr>
 
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -26,6 +26,7 @@
         <ul class="nav nav-tabs nav-justified">
           <li class="nav-item"><a href="#tab1" data-toggle="tab" class="nav-link">Mahasiswa</a></li>
           <li class="nav-item"><a href="#tab2" data-toggle="tab" class="nav-link">Dosen</a></li>
+          <!-- <li class="nav-item"><a href="#tab3" data-toggle="tab" class="nav-link">Dekan</a></li> -->
         </ul>
         <div class="tab-content b-0 mb-0">
           <div class="tab-pane m-t-10 fade active" id="tab1">
@@ -123,6 +124,7 @@
 
             </form>
           </div>
+
         </div>
       </div>
 

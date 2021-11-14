@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dekan;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\User;
@@ -20,10 +21,20 @@ class UserManagementController extends Controller
         $title = "Kelola Data User " . strtoupper($jenis);
         if ($jenis == "mahasiswa") {
             $users = Mahasiswa::with('user', 'prodi')->get();
-        }else{
+        }else if($jenis == "dosen"){
             $users = Dosen::with('user', 'prodi')->get();
+        }elseif ($jenis == "dekan") {
+            $users = Dekan::with('user')->get();
         }
 
+        return view('admin.users.index', compact('title', 'users', 'jenis'));
+    }
+
+    public function mahasiswa()
+    {
+        $title = "Data Mahasiswa";
+        $jenis = "mahasiswa";
+        $users = Mahasiswa::with('user', 'prodi')->get();
         return view('admin.users.index', compact('title', 'users', 'jenis'));
     }
 

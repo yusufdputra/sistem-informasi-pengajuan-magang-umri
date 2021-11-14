@@ -32,6 +32,7 @@ Auth::routes();
 
 Route::post('/register/mahasiswa', [RegisterController::class, 'mahasiswa'])->name('register.mahasiswa');
 Route::post('/register/dosen', [RegisterController::class, 'dosen'])->name('register.dosen');
+Route::post('/register/dekan', [RegisterController::class, 'dekan'])->name('register.dekan');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // admin
@@ -98,6 +99,10 @@ Route::group(['middleware' => ['role:admin|mahasiswa']], function () {
 Route::group(['middleware' => ['role:dosen|admin']], function () {
     // riwayat magang
     Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+});
+Route::group(['middleware' => ['role:dekan']], function () {
+    // data mhs
+    Route::get('mahasiswa', [UserManagementController::class, 'mahasiswa'])->name('mahasiswaData.index');
 });
 
 Route::group(['middleware' => ['role:dosen']], function () {

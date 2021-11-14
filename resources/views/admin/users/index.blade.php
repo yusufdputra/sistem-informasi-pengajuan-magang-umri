@@ -35,13 +35,17 @@
             <th>Alamat</th>
             <th>Kelas</th>
             @endif
+            @if($jenis == "mahasiswa" || $jenis == "dosen")
             <th>Prodi</th>
             <th>Nomor HP</th>
+            @endif
             @if($jenis == "dosen")
             <th>Alasan</th>
             <th>Status</th>
             @endif
+            @role('admin|mahasiswa')
             <th>Action</th>
+            @endrole
           </tr>
         </thead>
 
@@ -70,6 +74,7 @@
               @endif
             </td>
             @endif
+            @role('admin|mahasiswa')
             <td>
 
               <a href="#edit-password" data-animation="sign" data-plugin="custommodal" data-id='{{$value->id_user}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-warning btn-sm modal_pw"><i class="fa fa-lock"></i></a>
@@ -79,9 +84,8 @@
               @if($jenis == "dosen")
               <a href="#edit-status" data-animation="sign" data-plugin="custommodal" data-status="{{$value->status}}" data-id='{{$value->id}}' data-overlaySpeed="100" data-overlayColor="#36404a" class="btn btn-primary btn-sm modal_status"><i class="fa fa-toggle-on"></i></a>
               @endif
-
-
             </td>
+            @endrole
           </tr>
 
           @endforeach

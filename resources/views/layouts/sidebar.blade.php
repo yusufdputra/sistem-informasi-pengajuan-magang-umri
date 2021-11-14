@@ -15,12 +15,21 @@
         @endphp
         <h5><a href="#"> {{ $user->nama }}</a> </h5>
         @endrole
+
         @role('dosen')
         @php
         $user = App\Models\Dosen::where('id_user', Auth::user()->id)->first()
         @endphp
         <h5><a href="#"> {{ $user->nama }}</a> </h5>
         @endrole
+
+        @role('dekan')
+        @php
+        $user = App\Models\Dekan::where('id_user', Auth::user()->id)->first()
+        @endphp
+        <h5><a href="#"> {{ $user->nama }}</a> </h5>
+        @endrole
+
         @role('admin')
         <h5><a href="#"> ADMIN</a> </h5>
         @endrole
@@ -52,6 +61,7 @@
           <ul class=" list-unstyled">
             <li><a href="{{route ('user.index', 'mahasiswa')}}">Mahasiswa</a></li>
             <li><a href="{{route ('user.index', 'dosen')}}">Dosen</a></li>
+            <li><a href="{{route ('user.index', 'dekan')}}">Dekan</a></li>
           </ul>
         </li>
 
@@ -81,6 +91,12 @@
         @role('mahasiswa')
         <li>
           <a href="{{route ('pengajuanMagang.index')}}" class="waves-effect"><i class="fa fa-address-card-o"></i> <span> PLP </span> </a>
+        </li>
+        @endrole
+
+        @role('dekan')
+        <li>
+          <a href="{{route ('mahasiswaData.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Data Mahasiswa </span> </a>
         </li>
         @endrole
 

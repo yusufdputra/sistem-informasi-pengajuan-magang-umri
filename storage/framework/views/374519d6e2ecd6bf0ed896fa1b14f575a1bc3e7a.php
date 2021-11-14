@@ -15,12 +15,21 @@
         ?>
         <h5><a href="#"> <?php echo e($user->nama); ?></a> </h5>
         <?php endif; ?>
+
         <?php if(auth()->check() && auth()->user()->hasRole('dosen')): ?>
         <?php
         $user = App\Models\Dosen::where('id_user', Auth::user()->id)->first()
         ?>
         <h5><a href="#"> <?php echo e($user->nama); ?></a> </h5>
         <?php endif; ?>
+
+        <?php if(auth()->check() && auth()->user()->hasRole('dekan')): ?>
+        <?php
+        $user = App\Models\Dekan::where('id_user', Auth::user()->id)->first()
+        ?>
+        <h5><a href="#"> <?php echo e($user->nama); ?></a> </h5>
+        <?php endif; ?>
+
         <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
         <h5><a href="#"> ADMIN</a> </h5>
         <?php endif; ?>
@@ -53,6 +62,7 @@
           <ul class=" list-unstyled">
             <li><a href="<?php echo e(route ('user.index', 'mahasiswa')); ?>">Mahasiswa</a></li>
             <li><a href="<?php echo e(route ('user.index', 'dosen')); ?>">Dosen</a></li>
+            <li><a href="<?php echo e(route ('user.index', 'dekan')); ?>">Dekan</a></li>
           </ul>
         </li>
 
@@ -82,6 +92,12 @@
         <?php if(auth()->check() && auth()->user()->hasRole('mahasiswa')): ?>
         <li>
           <a href="<?php echo e(route ('pengajuanMagang.index')); ?>" class="waves-effect"><i class="fa fa-address-card-o"></i> <span> PLP </span> </a>
+        </li>
+        <?php endif; ?>
+
+        <?php if(auth()->check() && auth()->user()->hasRole('dekan')): ?>
+        <li>
+          <a href="<?php echo e(route ('mahasiswaData.index')); ?>" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Data Mahasiswa </span> </a>
         </li>
         <?php endif; ?>
 
