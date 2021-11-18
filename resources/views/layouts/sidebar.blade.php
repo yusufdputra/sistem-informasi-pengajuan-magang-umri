@@ -99,7 +99,7 @@
         </li>
 
         <li>
-          <a href="{{route ('Arsip.index')}}" class="waves-effect"><i class="fa fa-history"></i> <span> Riwayat PLP </span> </a>
+          <a href="{{route ('riwayat.index')}}" class="waves-effect"><i class="fa fa-history"></i> <span> Arsip PLP </span> </a>
         </li>
 
         @endrole
