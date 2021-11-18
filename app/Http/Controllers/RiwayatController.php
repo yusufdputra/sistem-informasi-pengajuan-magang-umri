@@ -16,7 +16,7 @@ class RiwayatController extends Controller
 
     public function index()
     {
-        $title = "Riwayat PLP Mahasiswa";
+        $title = "Arsip PLP Mahasiswa";
         $user = Auth::user();
         if ($user->roles[0]['name'] == 'admin') {
             $riwayat = Magang::with('mhs', 'dsn', 'sekolah')
