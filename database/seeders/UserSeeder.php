@@ -16,18 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // $admin = User::create([
-        //     'nomor_induk' => 'admin1234',
-        //     'email' => 'admin1234',
-        //     'password' => bcrypt('admin1234')
-        // ]);
+        $admin = User::create([
+            'nomor_induk' => 'admin1234',
+            'email' => 'admin1234',
+            'password' => bcrypt('admin1234')
+        ]);
 
-        // $admin->assignRole('admin');
-
-      
-
-        // $user->assignRole('pegawai');
-
+        $admin->assignRole('admin');
         
         $user = new User();
         $user->nomor_induk = '11651121';
