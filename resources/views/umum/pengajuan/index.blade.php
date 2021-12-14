@@ -110,7 +110,7 @@
             <!-- Logbook -->
             @role('mahasiswa')
             <td>
-              @if($value->url_laporan == NULL)
+              @if($value->url_laporan == NULL && $value->status_pengajuan == 'diterima')
               <a href="{{route('lookbook', $value->id)}}" class="btn btn-sm btn-info waves-effect waves-light">Lihat</a>
               @else
               Tidak Tersedia
