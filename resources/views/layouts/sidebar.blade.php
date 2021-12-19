@@ -115,6 +115,10 @@
         <li>
           <a href="{{route ('mahasiswaData.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Data Mahasiswa </span> </a>
         </li>
+
+        <li>
+          <a href="{{route ('riwayat.index')}}" class="waves-effect"><i class="fa fa-history"></i> <span> Arsip PLP </span> </a>
+        </li>
         @endrole
 
         @role('dosen')

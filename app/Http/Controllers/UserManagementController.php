@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dekan;
 use App\Models\Dosen;
+use App\Models\Magang;
 use App\Models\Mahasiswa;
 use App\Models\User;
 use Carbon\Carbon;
@@ -33,9 +34,8 @@ class UserManagementController extends Controller
     public function mahasiswa()
     {
         $title = "Data Mahasiswa";
-        $jenis = "mahasiswa";
-        $users = Mahasiswa::with('user', 'prodi')->get();
-        return view('admin.users.index', compact('title', 'users', 'jenis'));
+        $magang = Magang::with('mhs')->get();
+        return view('dekan.mahasiswa.index', compact('title', 'magang'));
     }
 
     public function hapus(Request $request)

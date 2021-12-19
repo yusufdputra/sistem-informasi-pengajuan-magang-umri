@@ -18,13 +18,14 @@ class RiwayatController extends Controller
     {
         $title = "Arsip PLP Mahasiswa";
         $user = Auth::user();
-        if ($user->roles[0]['name'] == 'admin') {
+        $role = $user->roles[0]['name'];
+        if ($role == 'admin' || $role == 'dekan') {
             $riwayat = Magang::with('mhs', 'dsn', 'sekolah')
             ->where('status_pengajuan', '=', 'selesai')
             ->where('nilai_pembimbing', '!=', NULL)
             ->orderBy('id_periode', 'DESC')
             ->get();
-        }else if ($user->roles[0]['name'] == 'dosen') {
+        }else if ($role == 'dosen') {
             $dosen = Dosen::select('id')->where('id_user', $user->id)->first();
             
             $riwayat = Magang::with('mhs', 'dsn', 'sekolah')

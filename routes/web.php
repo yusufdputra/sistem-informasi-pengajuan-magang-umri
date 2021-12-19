@@ -97,7 +97,7 @@ Route::group(['middleware' => ['role:admin|mahasiswa']], function () {
     Route::get('isi-kuisioner/{id}', [KuisionerController::class, 'index'])->name('kuisioner');
 });
 
-Route::group(['middleware' => ['role:dosen|admin']], function () {
+Route::group(['middleware' => ['role:dosen|admin|dekan']], function () {
     // riwayat magang
     Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
 });
